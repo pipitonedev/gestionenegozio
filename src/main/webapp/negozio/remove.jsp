@@ -1,6 +1,8 @@
 <!doctype html>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="it.prova.model.Negozio"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="it" class="h-100" >
 	 <head>
 	 
@@ -36,35 +38,36 @@
 					    <div class='card-header'>
 					        <h5>Visualizza dettaglio elemento da eliminare</h5>
 					    </div>
-					     <% Negozio negozioInPagina = (Negozio)request.getAttribute("remove_negozio_attr"); %>
+					   
 					    
 					
 					    <div class='card-body'>
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Ragione Sociale:</dt>
-							  <dd class="col-sm-9"><%=negozioInPagina.getRagioneSociale() %></dd>
+							   <c:out value="${remove_negozio_attr.getRagioneSociale() }"/>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Partita Iva:</dt>
-							  <dd class="col-sm-9"><%=negozioInPagina.getPartitaIva() %></dd>
+							  <c:out value="${remove_negozio_attr.getPartitaIva() }"/>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Fatturato:</dt>
-							  <dd class="col-sm-9"><%=negozioInPagina.getFatturato() %></dd>
+							  <c:out value="${remove_negozio_attr.getFatturato() }"/>
 					    	</dl>
 					    	
 					    	<dl class="row">
 							  <dt class="col-sm-3 text-right">Data di Apertura:</dt>
-							  <dd class="col-sm-9"><%=negozioInPagina.getDataApertura()!=null? new SimpleDateFormat("dd/MM/yyyy").format(negozioInPagina.getDataApertura()):"N.D."  %></dd>
+							  <fmt:formatDate value="${remove_negozio_attr.getDataApertura()}"  pattern="dd/MM/yyyy" var="dataapertura"/>
+							  <c:out value="${dataapertura}"></c:out>
 					    	</dl>
 					    	
 					    </div>
 					    
 					    <div class='card-footer'>
 					    	<form action="ExecuteRemoveNegozioServlet" method="post">
-					    	<input type="hidden" name="idNegozio" value="<%=negozioInPagina.getId() %>">
+					    	<input type="hidden" name="idNegozio" value="${remove_negozio_attr.getId()}">
 						        
 						        <button type="submit"  class='btn btn-outline-danger' style='width:80px'>Elimina</button>
 						        <a href="ListNegoziServlet" class='btn btn-outline-secondary' style='width:80px'>

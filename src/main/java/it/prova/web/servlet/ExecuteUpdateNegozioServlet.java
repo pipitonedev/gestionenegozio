@@ -30,6 +30,7 @@ public class ExecuteUpdateNegozioServlet extends HttpServlet {
 
 		Negozio negozioInstance = UtilityNegozioForm.createNegozioFromParams(ragioneSocialeInputParam,
 				partitaIvaInputParam, fatturatoInputStringParam, dataAperturaStringParam);
+		negozioInstance.setId(idNegozio);
 
 		if (!UtilityNegozioForm.validateNegozioBean(negozioInstance)) {
 			request.setAttribute("update_negozio_attr", negozioInstance);

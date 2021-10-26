@@ -1,4 +1,5 @@
 <!doctype html>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="it.prova.model.Negozio"%>
 <html lang="it" class="h-100" >
@@ -43,30 +44,30 @@
 		
 							<form method="post" action="ExecuteInsertNegozioServlet" class="row g-3" novalidate="novalidate">
 							
-								<% Negozio negozioInPagina = (Negozio)request.getAttribute("insert_negozio_attr"); %>
+								
 							
 								<div class="col-md-6">
 									<label for="ragioneSociale" class="form-label">Ragione Sociale <span class="text-danger">*</span></label>
 									<input type="text" name="ragioneSociale" id="ragioneSociale" class="form-control" placeholder="Inserire la ragione Sociale"  
-										value="<%=negozioInPagina.getRagioneSociale()!=null?negozioInPagina.getRagioneSociale():"" %>" required>
+										value="<c:out value="${insert_negozio_attr.getRagioneSociale()}"></c:out>" required>
 								</div>
 								
 								<div class="col-md-6">
 									<label for="partitaIva" class="form-label">Partita Iva <span class="text-danger">*</span></label>
 									<input type="text" name="partitaIva" id="partitaIva" class="form-control" placeholder="Inserire la partita Iva"  
-										value="<%=negozioInPagina.getPartitaIva()!=null?negozioInPagina.getPartitaIva():"" %>" required>
+										value="<c:out value="${insert_negozio_attr.getPartitaIva()}"></c:out>" required>
 								</div>
 							
 								<div class="col-md-6">
 									<label for="fatturato" class="form-label">Fatturato <span class="text-danger">*</span></label>
 									<input type="number" class="form-control" name="fatturato" id="fatturato" placeholder="Inserire fatturato" 
-									value="<%=negozioInPagina.getFatturato()!=null?negozioInPagina.getFatturato():"" %>" required>
+									value="<c:out value="${insert_negozio_attr.getFatturato()}"></c:out>" required>
 								</div>
 								
 								<div class="col-md-3">
 									<label for="dataApertura" class="form-label">Data di Apertura<span class="text-danger">*</span></label>
 									<input class="form-control"  name="dataApertura" id="dataApertura" type="date" placeholder="dd/MM/yy" title="formato : gg/mm/aaaa" 
-										value="<%=negozioInPagina.getDataApertura()!=null? new SimpleDateFormat("yyyy-MM-dd").format(negozioInPagina.getDataApertura()):""  %>" required/>
+										value="<c:out value="${insert_negozio_attr.getDataApertura()}"></c:out>" required/>
 								</div>
 								
 								

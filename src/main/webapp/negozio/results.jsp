@@ -2,7 +2,10 @@
 <%@page import="it.prova.model.Negozio"%>
 <%@page import="java.util.List"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
+
 <html lang="it" class="h-100" >
 	 <head>
 	 
@@ -42,7 +45,7 @@
 				        <h5>Lista dei risultati</h5> 
 				    </div>
 				    <div class='card-body'>
-				    	<a class="btn btn-danger" href="PreparaInsertNegozioServlet">Add New</a>
+				    	<a class="btn btn-danger" href="PreparaInsertNegozioServlet">Aggiungi Nuovo</a>
 				    
 				        <div class='table-responsive'>
 				            <table class='table table-striped ' >
@@ -57,21 +60,22 @@
 				                    </tr>
 				                </thead>
 				                <tbody>
-				                	<% List<Negozio> listaNegozi = (List<Negozio>)request.getAttribute("listaNegoziAttribute");
-				                		for(Negozio item:listaNegozi){ %>
+				                	<c:forEach var="item" items="${listaNegoziAttribute}">
 				                    <tr >
-				                        <td><%=item.getId() %></td>
-				                        <td><%=item.getRagioneSociale() %></td>
-				                        <td><%=item.getPartitaIva() %></td>
-				                        <td><%=item.getFatturato() %></td>
-				                        <td><%=item.getDataApertura()!=null? new SimpleDateFormat("dd/MM/yyyy").format(item.getDataApertura()):"N.D."%></td>
+				                        <td>${item.id}</td>
+				                        <td>${item.ragioneSociale}</td>
+				                        <td>${item.partitaIva}</td>
+				                        <td>${item.fatturato}</td>
+				                        <fmt:formatDate value="${item.dataApertura}" pattern="dd/MM/yyyy" var="dataApertura"/>
+				                        <td>${dataApertura}</td>
+				                        
 				                        <td>
-											<a class="btn  btn-sm btn-outline-info" href="ExecuteVisualizzaNegozioServlet?idNegozio=<%=item.getId() %>">Visualizza</a>
-											<a class="btn  btn-sm btn-outline-secondary ml-2 mr-2" href="PreparaUpdateNegozioServlet?idNegozio=<%=item.getId() %>">Edit</a>
-											<a class="btn btn-outline-danger btn-sm" href="PreparaRimuoviNegozioServlet?idNegozio=<%=item.getId() %>">Delete</a>
+											<a class="btn  btn-sm btn-outline-info" href="ExecuteVisualizzaNegozioServlet?idNegozio=${item.id}">Visualizza</a>
+											<a class="btn  btn-sm btn-outline-secondary ml-2 mr-2" href="PreparaUpdateNegozioServlet?idNegozio=${item.id}">Edit</a>
+											<a class="btn btn-outline-danger btn-sm" href="PreparaRimuoviNegozioServlet?idNegozio=${item.id}">Delete</a>
 										</td>
 				                    </tr>
-				                    <% } %>
+				                    </c:forEach>
 				                    
 				                </tbody>
 				            </table>

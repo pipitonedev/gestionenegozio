@@ -1,4 +1,5 @@
 <!doctype html>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html lang="it" class="h-100" >
 	 <head>
 	 
@@ -7,7 +8,7 @@
 		<!-- Custom styles per le features di bootstrap 'Columns with icons' -->
 	   <link href="./assets/css/features.css" rel="stylesheet">
 	   
-	   <title>Gestione Articoli</title>
+	   <title>Gestione Negozio</title>
 	 </head>
 	   <body class="d-flex flex-column h-100">
 	   		
@@ -87,7 +88,7 @@
 			        <div class="feature-icon bg-danger bg-gradient">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
 			        </div>
-			        <h2>Cooming Soon</h2>
+			        <h2>Coming Soon</h2>
 			        <p>Web application in continua evoluzione, presto nuovi aggiornamenti..</p>
 			        <a href="#" class="icon-link">
 			          Vai alla funzionalità
